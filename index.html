@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>電腦／NAS 不斷電系統 (UPS) VA 瓦數換算 × 停電撐多久計算機</title>
+  <meta name="description" content="免費換算電腦電源供應器與 NAS 總瓦數需要買幾 VA 的 UPS 不斷電系統，並估算停電後大約能撐幾分鐘安全關機。" />
+  <meta name="keywords" content="UPS不斷電系統瓦數換算,VA轉W怎麼算,NAS UPS推薦規格,停電UPS撐多久" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "電腦／NAS 不斷電系統 (UPS) VA 瓦數換算 × 停電撐多久計算機",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TWD" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "1000VA的UPS實際上可以接多少瓦的電腦？", "acceptedAnswer": {"@type": "Answer", "text": "以一般家用 UPS 功率因數 0.6 計算，1000VA 約等於 600W 最大負載，建議實際接上的電腦與螢幕總耗電控制在 450W～480W 以內最安全。"}}]}
+  </script>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --accent: #ea580c;
+      --accent-bg: #fff7ed;
+      --good: #059669;
+      --warn: #d97706;
+      --danger: #dc2626;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 48px; }
+    header { text-align: center; margin-bottom: 24px; }
+    header h1 { font-size: 1.6rem; margin: 0 0 8px; }
+    header p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+    .badge {
+      display: inline-block; background: #e0f2fe; color: var(--primary-dark);
+      font-size: 0.78rem; font-weight: 600; padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;
+    }
+    .tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+    .tab-btn {
+      padding: 12px; border: 1px solid var(--border); background: var(--card);
+      border-radius: 10px; font-size: 0.98rem; font-weight: 600; cursor: pointer; color: var(--muted);
+    }
+    .tab-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 20px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+    }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 680px) { .grid-2 { grid-template-columns: 1fr; } }
+    label { display: block; font-size: 0.88rem; font-weight: 600; margin-bottom: 6px; }
+    input[type="number"], select {
+      width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 1rem; background: #fff;
+    }
+    .pill-group, .preset-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .pill, .chip {
+      padding: 7px 12px; border: 1px solid var(--border); background: #f8fafc;
+      border-radius: 8px; font-size: 0.86rem; font-weight: 600; cursor: pointer;
+    }
+    .pill.active { background: #e0f2fe; border-color: var(--primary); color: var(--primary-dark); }
+    .chip { border-radius: 999px; font-weight: 500; }
+    .chip:hover { border-color: var(--primary); color: var(--primary-dark); }
+    .result-box { margin-top: 18px; padding: 16px; border-radius: 12px; background: #f1f5f9; }
+    .result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+    .metric { background: #fff; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border); }
+    .metric .label { font-size: 0.8rem; color: var(--muted); }
+    .metric .value { font-size: 1.3rem; font-weight: 700; margin-top: 2px; }
+    .metric .value.highlight { color: var(--primary-dark); }
+    .metric .value.good { color: var(--good); }
+    .metric .value.warn { color: var(--warn); }
+    .metric .value.danger { color: var(--danger); }
+    .gear-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+    .gear-card {
+      border: 1px solid var(--border); border-radius: 12px; padding: 14px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .gear-tag {
+      display: inline-block; font-size: 0.75rem; font-weight: 700; color: var(--accent);
+      background: var(--accent-bg); padding: 2px 8px; border-radius: 6px; margin-bottom: 6px;
+    }
+    .gear-card h3 { font-size: 1rem; margin: 0 0 6px; }
+    .gear-card p { font-size: 0.85rem; color: var(--muted); margin: 0 0 12px; }
+    .cta-btn {
+      display: block; text-align: center; padding: 9px 12px; border-radius: 8px;
+      background: var(--accent); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.9rem;
+    }
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.88rem; }
+    th, td { padding: 8px 10px; border-bottom: 1px solid var(--border); text-align: left; }
+    th { color: var(--muted); font-weight: 600; }
+    .seo-section h2 { font-size: 1.15rem; margin: 0 0 10px; }
+    .seo-section h3 { font-size: 1rem; margin: 18px 0 6px; color: var(--primary-dark); }
+    .seo-section p, .seo-section li { font-size: 0.92rem; color: #334155; }
+    .hidden { display: none; }
+    footer { text-align: center; font-size: 0.8rem; color: var(--muted); margin-top: 28px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">電腦與 NAS 資料防護必算工具</div>
+      <h1>電腦／NAS 不斷電系統 (UPS) VA 與續航計算機</h1>
+      <p>輸入主機、螢幕與 NAS 實際負載瓦數，換算建議 UPS 容量 (VA) 與停電後備援分鐘數</p>
+    </header>
+
+    
+        <section class="card">
+          <div class="grid-2">
+            <div><label for="loadWatts">設備實際合計負載（瓦 W，一般文書電腦+螢幕約 180W、NAS 約 60W）</label><input type="number" id="loadWatts" value="250" min="10" max="5000" step="10" /></div>
+            <div><label for="pfInput">UPS 功率因數 (PF，一般家用約 0.6) </label><input type="number" id="pfInput" value="0.6" min="0.5" max="1.0" step="0.05" /></div>
+          </div>
+          <div style="margin-top:12px;"><label for="upsVaInput">預計選購的 UPS 標示容量（VA，常見為 650 / 1000 / 1500 VA）</label><input type="number" id="upsVaInput" value="1000" min="300" max="5000" step="50" /></div>
+          <div class="result-box">
+            <div class="result-grid">
+              <div class="metric"><div class="label">建議最低 UPS 容量（含 25% 餘裕）</div><div class="value highlight" id="recVaEl">--</div></div>
+              <div class="metric"><div class="label">該台 UPS 最大真實瓦數</div><div class="value" id="maxWattEl">--</div></div>
+              <div class="metric"><div class="label">停電後預估撐多久（僅供參考）</div><div class="value good" id="runtimeEl">--</div></div>
+            </div>
+          </div>
+        </section>
+
+    <section class="card">
+      <h2 style="font-size: 1.15rem; margin: 0 0 6px;">停電不斷電與資料備份防護裝備</h2>
+      <p style="margin: 0 0 14px; color: var(--muted); font-size: 0.88rem;">跳電瞬間最傷硬碟與主機板，選對合適 VA 數的 UPS 與突波保護插座最關鍵（含合作推廣連結）</p>
+      <div class="gear-grid" id="gearGrid"></div>
+    </section>
+
+    <article class="card seo-section">
+      
+          <h2>UPS 標示的「VA」跟「瓦數 W」怎麼換算？</h2>
+          <p>市售 UPS 不斷電系統多標示視在功率 <strong>VA</strong>，實際可承受的實功率公式為：<code>最大瓦數 (W) = 容量 (VA) × 功率因數 (PF)</code>。一般家用離線式/在線互動式 UPS 的 PF 約為 <strong>0.6</strong>，代表一台 1000VA 的 UPS 實際最大負載約為 <strong>600W</strong>（建議日常負載不超過 80%）。</p>
+    </article>
+
+    <footer>
+      <p>註：UPS 實際備援時間受電池老化程度、功率因數 (PF) 與逆變器轉換效率影響，建議每 2～3 年檢查電池健康度。 | <a href="https://jimmycmhsieh0801-cloud.github.io/">更多實用工具總目錄</a></p>
+    </footer>
+  </div>
+
+  <script src="affiliate_config.js"></script>
+  <script src="app.js"></script>
+  <script>
+    if (typeof AFFILIATE_GEARS !== "undefined") {
+      const grid = document.getElementById("gearGrid");
+      if (grid && !grid.innerHTML.trim()) {
+        grid.innerHTML = AFFILIATE_GEARS.map(
+          (g) => `
+          <div class="gear-card">
+            <div>
+              <span class="gear-tag">${g.tag}</span>
+              <h3>${g.title}</h3>
+              <p>${g.desc}</p>
+            </div>
+            <a class="cta-btn" href="${g.url}" target="_blank" rel="noopener noreferrer nofollow">${g.cta} →</a>
+          </div>`
+        ).join("");
+      }
+    }
+  </script>
+</body>
+</html>
