@@ -33,7 +33,7 @@
   }
   </script>
   <script type="application/ld+json">
-  {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "1000VA的UPS實際上可以接多少瓦的電腦？", "acceptedAnswer": {"@type": "Answer", "text": "以一般家用 UPS 功率因數 0.6 計算，1000VA 約等於 600W 最大負載，建議實際接上的電腦與螢幕總耗電控制在 450W～480W 以內最安全。"}}]}
+  {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "1000VA的UPS實際上可以接多少瓦的電腦？", "acceptedAnswer": {"@type": "Answer", "text": "以一般家用 UPS 功率因數 0.6 計算，1000VA 約等於 600W 最大負載，建議實際接上的電腦與螢幕總耗電控制在 450W～480W 以內最安全。"}}, {"@type": "Question", "name": "NAS買不斷電系統需要買多大VA？", "acceptedAnswer": {"@type": "Answer", "text": "單純接 2-bay 或 4-bay NAS 與光世代小烏龜（總負載約 50W～80W），選購 650VA～1000VA 的在線互動式 UPS 並接上 USB 通知自動關機即可。"}}, {"@type": "Question", "name": "雷射印表機可以接在UPS不斷電系統上嗎？", "acceptedAnswer": {"@type": "Answer", "text": "不行，雷射印表機加熱瞬間功耗極高，接在一般家用 UPS 上容易造成過載保護關機或損壞機器。"}}]}
   </script>
   <style>
     :root {
@@ -156,9 +156,21 @@
     </section>
 
     <article class="card seo-section">
-      
-          <h2>UPS 標示的「VA」跟「瓦數 W」怎麼換算？</h2>
-          <p>市售 UPS 不斷電系統多標示視在功率 <strong>VA</strong>，實際可承受的實功率公式為：<code>最大瓦數 (W) = 容量 (VA) × 功率因數 (PF)</code>。一般家用離線式/在線互動式 UPS 的 PF 約為 <strong>0.6</strong>，代表一台 1000VA 的 UPS 實際最大負載約為 <strong>600W</strong>（建議日常負載不超過 80%）。</p>
+      <h2>UPS 標示 VA 與實際瓦數 (W) 安全負載對照表</h2>
+      <p>市售 UPS 多標示視在功率 <strong>VA</strong>，實際可承受的實功率公式為：<code>最大瓦數 (W) = 容量 (VA) × 功率因數 (PF)</code>。一般家用離線式/在線互動式 UPS 的 PF 約為 <strong>0.6</strong>，建議日常接上的總負載不超過最大瓦數的 80%。</p>
+      <table>
+        <thead><tr><th>UPS 標示容量</th><th>常見最大實功率 (PF=0.6)</th><th>建議安全負載上限 (80%)</th><th>適合搭配設備</th></tr></thead>
+        <tbody>
+          <tr><td>650 VA</td><td>約 390 W</td><td>約 310 W 以內</td><td>單台 NAS + 路由器數據機</td></tr>
+          <tr><td>1000 VA</td><td>約 600 W</td><td>約 480 W 以內</td><td>文書桌機 + 螢幕 + NAS</td></tr>
+          <tr><td>1500 VA</td><td>約 900 W</td><td>約 720 W 以內</td><td>電競電腦 (RTX顯卡) + 雙螢幕</td></tr>
+          <tr><td>2000 VA</td><td>約 1200 W</td><td>約 960 W 以內</td><td>高階工作站 / 多機伺服器</td></tr>
+        </tbody>
+      </table>
+      <h3>常見問題 (FAQ)</h3>
+      <p><strong>Q1：1000VA 的 UPS 實際上可以接多少瓦的電腦？</strong><br>以一般家用 UPS 功率因數 0.6 計算，1000VA 約等於 600W 最大負載，建議實際接上的電腦與螢幕總耗電控制在 450W～480W 以內最安全。</p>
+      <p><strong>Q2：UPS 可以插在延長線上嗎？或者可以把印表機插在 UPS 上嗎？</strong><br>雷射印表機與吹風機等高瞬間電流設備<strong>絕對不可</strong>插在一般家用 UPS 上，會導致過載跳電；高耗電設備應插在具突波保護的獨立延長線上。</p>
+      <p><strong>Q3：UPS 電池多久需要更換一次？</strong><br>家用鉛酸電池壽命通常為 <strong>2～3 年</strong>，若發現停電時瞬間斷電或警示燈閃爍，通常代表電池老化需更換。</p>
     </article>
 
     
